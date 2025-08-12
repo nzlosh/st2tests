@@ -14,7 +14,7 @@ space_char +=
 comma := ,
 COMPONENT_PYTHONPATH = $(subst $(space_char),:,$(realpath $(COMPONENTS)))
 
-PYTHON_TARGET := 3.6
+PYTHON_TARGET := 3.10
 
 REQUIREMENTS := test-requirements.txt requirements.txt
 # Grab the version of pip from the Makefile in the st2 repository
@@ -107,8 +107,8 @@ requirements: virtualenv
 
 	# Install requirements
 	for req in $(REQUIREMENTS); do \
-			echo "Installing $$req..." ; \
-			$(VIRTUALENV_DIR)/bin/pip install $(PIP_OPTIONS) -r $$req ; \
+		echo "Installing $$req..." ; \
+		$(VIRTUALENV_DIR)/bin/pip install $(PIP_OPTIONS) -r $$req ; \
 	done
 
 .PHONY: virtualenv
@@ -117,7 +117,7 @@ $(VIRTUALENV_DIR)/bin/activate:
 	@echo
 	@echo "==================== virtualenv ===================="
 	@echo
-	test -d $(VIRTUALENV_DIR) || virtualenv $(VIRTUALENV_DIR)
+	test -d $(VIRTUALENV_DIR) || python3 -m venv $(VIRTUALENV_DIR)
 
 	# Setup PYTHONPATH in bash activate script...
 	echo '' >> $(VIRTUALENV_DIR)/bin/activate
