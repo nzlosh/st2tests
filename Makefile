@@ -14,6 +14,7 @@ space_char +=
 comma := ,
 COMPONENT_PYTHONPATH = $(subst $(space_char),:,$(realpath $(COMPONENTS)))
 
+# Extract the Python major/minor version to target the correct test requirements file.
 PYTHON_VERSION := $(shell python3 --version | sed -r 's/.*([[0-9]+\.[0-9]+)\.[0-9]+.*/\1/g')
 REQUIREMENTS := test-requirements-$(PYTHON_VERSION).txt requirements.txt
 # Grab the version of pip from the Makefile in the st2 repository
